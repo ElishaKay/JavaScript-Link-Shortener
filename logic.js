@@ -31,6 +31,10 @@ var pool = mysql.createPool({
 //con: the MySQL connection
 //vanity: this should be a string which represents a custom URL (e.g. "url" corresponds to d.co/url)
 
+function testHandlers(onSuccess, onError){
+	onSuccess(3);
+}
+
 function generateHash(onSuccess, onError, retryCount, url, request, response, con, vanity) {
 	var hash = "";
 	if(vanity){
@@ -58,6 +62,7 @@ function generateHash(onSuccess, onError, retryCount, url, request, response, co
 	}
 	//This section query's (with a query defined in "constants.js") and looks if the short URL with the specific segment already exists
 	//If the segment already exists, it will repeat the generateHash function until a segment is generated which does not exist in the database
+    //con.escape = mysql function to surround value with quotes (and escape any inner quotes).
     con.query(cons.get_query.replace("{SEGMENT}", con.escape(hash)), function(err, rows){
 		if(err){
 			console.log(err);
@@ -80,7 +85,7 @@ function hashError(response, request, con, code){
 	response.send(urlResult(null, false, code));
 }
 
-//The function that is executed when the short URL has been created successfully.
+//The function that is executed when the hash has been created successfully.
 function handleHash(hash, url, request, response, con){
 	con.query(cons.add_query.replace("{URL}", con.escape(url)).replace("{SEGMENT}", con.escape(hash)).replace("{IP}", con.escape(getIP(request))), function(err, rows){
 		if(err){
@@ -147,10 +152,12 @@ var addUrl = function(url, request, response, vanity){
 						if(err){
 							console.log(err);
 						}
+						// if the url contains the words localhost, send failure
 						if(url.indexOf("http://localhost") > -1 || url.indexOf("https://localhost") > -1){
 							response.send(urlResult(null, false, 401));
 							return;
 						}
+						// if the url is over 1000 characters, send failure
 						if(url.length > 1000){
 							response.send(urlResult(null, false, 406));
 							return;

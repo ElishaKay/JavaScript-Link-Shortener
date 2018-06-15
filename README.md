@@ -25,3 +25,40 @@ http://localhost:3500/whatis?url=http://facebook.com
 
 
 This script is meant to be used as a public URL shortener. If you want to use this script for personal use, you have to include some sort of authentication.
+
+<h3>Understanding Callback functions within JavaScript</h3>
+
+"For JavaScript to know when an asynchronous operation has a result 
+(a result being either returned data or an error that occurred during the operation), 
+it points to a function that will be executed once that result is ready. 
+This function is what we call a “callback function”."
+
+source: <a href="https://medium.com/codebuddies/getting-to-know-asynchronous-javascript-callbacks-promises-and-async-await-17e0673281ee">"Getting to know asynchronous JavaScript: Callbacks, Promises and Async/Await"</a>
+
+To bring this point home, here is the flow of the logic.js file within this repo.
+
+Main Function Definition:
+
+function generateHash(onSuccess, onError, retryCount, url, request, response, con, vanity) {
+
+
+The Main Function In Action:
+
+generateHash(handleHash, hashError, 50, url, request, response, con, vanity);
+
+
+Other Function Definitions: i.e. What do the "handleHash" and "hashError functions actually do?"
+
+//The function that is executed when the hash has been created successfully. (i.e. onSuccess handler)
+
+function handleHash(hash, url, request, response, con){
+	//cons.add_query = 'INSERT INTO urls SET url = {URL}, segment = {SEGMENT}, ip = {IP}';
+	con.query(cons.add_query.replace("{URL}", con.escape(url)).replace("{SEGMENT}", con.escape(hash)).replace("{IP}", con.escape(getIP(request))), function(err, rows){
+		if(err){
+			console.log(err);
+		}
+	});
+	response.send(urlResult(hash, true, 100));
+}
+
+

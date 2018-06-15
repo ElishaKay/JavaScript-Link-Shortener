@@ -19,7 +19,7 @@ var route = function(app){
 				if(err){
 					console.log('error: ', err)
 				} else {
-				res.json(rows);
+					res.json(rows);
 				}
     		})
     });

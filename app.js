@@ -11,12 +11,12 @@ var path = require("path");
 
 app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, '/')));
-app.use(express.static('views'));
 
 app.get('/',function(req,res){
 	res.render('index.ejs');   
 });
 
-app.listen(3500);
-console.log("Started listening at port 3500");
+var port = 8000;
+app.listen(port);
+console.log(`Started listening at port ${port}`);
 router.route(app);

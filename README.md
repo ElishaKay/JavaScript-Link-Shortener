@@ -15,14 +15,25 @@ Blog article on <a href="https://www.codeproject.com/Articles/996559/URL-shorten
 
 API Calls:
 
-Get all URL's: http://localhost:3500/geturls
+Get all URL's: 
+```
+http://localhost:3500/geturls
+```
 
 Generate a new shortlink: 
+```
 http://localhost:3500/add?url=https://www.codeproject.com/Tags/All-Topics
+```
 
 Get more info about a specific URL (based on its shortlink/hash):
+```
 http://localhost:3500/whatis?url=http://facebook.com
+```
 
+Create a customized 'vanity' url:
+```
+http://localhost:3500/add?url=http%3A%2F%2Fmicrosoft.com&vanity=microsoft
+```
 
 This script is meant to be used as a public URL shortener. If you want to use this script for personal use, you have to include some sort of authentication.
 

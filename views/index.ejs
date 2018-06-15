@@ -27,7 +27,9 @@
 
 
 <!-- Button to trigger modal -->
-  <a href="#newUrl" class="btn btn-primary" ng-click="shortenUrl()" data-toggle="modal">Shorten</a>
+  <a href="#randomUrl" class="btn btn-primary" ng-click="randomShortener()" data-toggle="modal">Random Shortener</a>
+
+  <a href="#customUrl" class="btn btn-primary" data-toggle="modal">Customizable Shortener</a>
 
 <!-- Table to display existing URL's: -->
  <table>
@@ -64,7 +66,7 @@
 
       myapp.controller('myctrl', function ($scope,$http) {
 
-       $scope.baseUrl = window.location;
+       $scope.baseUrl = window.location.href;
 
        $http.get('/geturls')
           .success(function(data) {
@@ -75,32 +77,39 @@
           console.log('Error: ' + data);
       });
 
-      $scope.shortenUrl = function() { 
+      $scope.randomShortener = function() { 
           $http.get('/add?url=' + $scope.longurl)
             .success(function(data) {
               console.log(data);
               $scope.newUrl = data.url;
-                 //  $http.get('/whatis?url=' + data.url)
-                 //    .success(function(data2) {
-                 //    console.log('new shortlink',data2);
-                 //    $scope.allUrls.push(data2);
-                 // })
-                 //    .error(function(data) {
-                 //    console.log('Error: ' + data);
-                 // });   
           })
           .error(function(data) {
           console.log('Error: ' + data);
          });
        };
+
+       $scope.customShortener = function() {
+          console.log('called custom shortener with this vanity', $scope.vanity); 
+          $http.get('/add?url=' + $scope.longurl + 
+              '&vanity=' + $scope.vanity)
+            .success(function(data) {
+              console.log(data);
+              $scope.newUrl = data.url;
+          })
+          .error(function(data) {
+          console.log('Error: ' + data);
+         });
+       };
+
     });
 </script>
 
 <br>
 
+<!-- Modal #2- Customizable Shortener -->
 <div class="container">
   <!-- Modal -->
-  <div class="modal fade" id="newUrl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="randomUrl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -119,6 +128,38 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 </div>
+
+
+<!-- Modal #2- Customizable Shortener -->
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="customUrl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title">Customizable Short Link</h4>
+        </div>
+        <div class="modal-body">
+          
+            <div class="form-group">
+              <label for="filename">Add your vanity text: 
+                <span>i.e. {{baseUrl + vanity}}</label>
+              <input type="text" id="filename" class="form-control" ng-model="vanity"> 
+            </div>
+        </div>
+          
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"  ng-click="customShortener()">Create Custom Link</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+
+
 
 
 

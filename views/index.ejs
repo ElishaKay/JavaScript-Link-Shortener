@@ -80,14 +80,14 @@
             .success(function(data) {
               console.log(data);
               $scope.newUrl = data.url;
-                  $http.get('/whatis?url=' + data.url)
-                    .success(function(data2) {
-                    console.log('new shortlink',data2);
-                    $scope.allUrls.push(data2);
-                 })
-                    .error(function(data) {
-                    console.log('Error: ' + data);
-                 });   
+                 //  $http.get('/whatis?url=' + data.url)
+                 //    .success(function(data2) {
+                 //    console.log('new shortlink',data2);
+                 //    $scope.allUrls.push(data2);
+                 // })
+                 //    .error(function(data) {
+                 //    console.log('Error: ' + data);
+                 // });   
           })
           .error(function(data) {
           console.log('Error: ' + data);

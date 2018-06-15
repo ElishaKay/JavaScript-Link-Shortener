@@ -11,6 +11,7 @@ var path = require("path");
 
 app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, '/')));
+app.use(express.static('views'));
 
 app.get('/',function(req,res){
 	res.render('index.ejs');   

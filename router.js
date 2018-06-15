@@ -10,8 +10,9 @@ var route = function(app){
 
 	app.get('/geturls', function(req,res){
 		connection.query(
-	       `select url as long_url, 
-	       	segment, 
+	       `select id,
+	        url, 
+	       	segment as hash, 
 			DATE_FORMAT(datetime_added, "%M %d, %Y") AS date,
 			num_of_clicks
 				from 

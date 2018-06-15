@@ -200,7 +200,7 @@ var whatIs = function(url, request, response){
 				response.send({result: false, url: null});
 			}
 			else{
-				response.send({result: true, url: rows[0].url, hash: hash, clicks: rows[0].num_of_clicks});
+				response.send({result: true, url: rows[0].url, hash: hash, clicks: rows[0].num_of_clicks, id:rows[0].id});
 			}
 		});
 		con.release();

@@ -2,6 +2,10 @@
 	"name": "urlshortener",
 	"description": "Node.js URL shortener",
 	"version": "0.0.1",
+	"scripts": {
+    	"start": "node app.js",
+    	"test": "mocha --reporter spec"
+  	},
 	"dependencies": {
 		"body-parser": "^1.7.0",
 		"ejs": "^2.6.1",

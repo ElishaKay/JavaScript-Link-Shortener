@@ -3,8 +3,7 @@
 	"description": "Node.js URL shortener",
 	"version": "0.0.1",
 	"scripts": {
-    	"start": "node app.js",
-    	"test": "mocha --reporter spec"
+    	"start": "node app.js"
   	},
 	"dependencies": {
 		"body-parser": "^1.7.0",

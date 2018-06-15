@@ -16,7 +16,12 @@ app.get('/',function(req,res){
 	res.render('index.ejs');   
 });
 
-var port = 8000;
+
+// for heroku
+var port = 80;
+//for development
+// var port = 3500;
+
 app.listen(port);
 console.log(`Started listening at port ${port}`);
 router.route(app);

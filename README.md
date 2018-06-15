@@ -39,18 +39,21 @@ To bring this point home, here is the flow of the logic.js file within this repo
 
 Main Function Definition:
 
+```javascript
 function generateHash(onSuccess, onError, retryCount, url, request, response, con, vanity) {
-
+```
 
 The Main Function In Action:
 
+```javascript
 generateHash(handleHash, hashError, 50, url, request, response, con, vanity);
-
+```
 
 Other Function Definitions: i.e. What do the "handleHash" and "hashError functions actually do?"
 
 //The function that is executed when the hash has been created successfully. (i.e. onSuccess handler)
 
+```javascript
 function handleHash(hash, url, request, response, con){
 	//cons.add_query = 'INSERT INTO urls SET url = {URL}, segment = {SEGMENT}, ip = {IP}';
 	con.query(cons.add_query.replace("{URL}", con.escape(url)).replace("{SEGMENT}", con.escape(hash)).replace("{IP}", con.escape(getIP(request))), function(err, rows){
@@ -60,5 +63,5 @@ function handleHash(hash, url, request, response, con){
 	});
 	response.send(urlResult(hash, true, 100));
 }
-
+```
 

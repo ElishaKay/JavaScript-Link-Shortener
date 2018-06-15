@@ -1,5 +1,8 @@
+<img src="views/img/shortener.PNG">
+
 # Node.js + Express.js URL shortener
-Blog article on <a href="https://www.codeproject.com/Articles/996559/URL-shortener-in-Node-js-plus-Express-js-plus-MySQL">Node, MySQL, and link shortening (doesn't include the front end)</a>.
+
+Based on the Blog article here: <a href="https://www.codeproject.com/Articles/996559/URL-shortener-in-Node-js-plus-Express-js-plus-MySQL">Node, MySQL, and link shortening (doesn't include the front end)</a>.
 
 
 ## Installation

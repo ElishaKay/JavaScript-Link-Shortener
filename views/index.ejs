@@ -13,40 +13,43 @@
 <body>
 
 <div ng-app="myapp">
+  <div class="header">
     <div class="container" ng-controller="myctrl">
 
-      <div class="page-header">
-        <h1>Amp It Up <small>Shorten Your URL's</small></h1>
-      </div>
-
-
+</header>
+    <div class="page-header boxed">>
+        <img src="img/expand.png" class="text-left"><h1 class="text" style="display:inline"><center>Shorten Your URL's</center></h1>
+    </div>
       <div class="form-group">
-        <label for="url">Long URL</label>
+        <label class="text" for="url">Long URL</label>
         <input type="text" id="filename" class="form-control" ng-model="longurl">
       </div>
 
 
 <!-- Button to trigger modal -->
-  <a href="#randomUrl" class="btn btn-primary" ng-click="randomShortener()" data-toggle="modal">Random Shortener</a>
+  <a href="#randomUrl" class="btn btn-primary" ng-click="randomShortener()" data-toggle="modal">Shorten Randomly</a>
 
-  <a href="#customUrl" class="btn btn-primary" data-toggle="modal">Customizable Shortener</a>
+  <a href="#customUrl" class="btn btn-primary" data-toggle="modal">Shorten Customizably</a>
 
 <!-- Table to display existing URL's: -->
  <table>
 
-      <thead>
+      <thead >
       <tr>
-        <td>
+        <td class="text">
            Original Link
         </td>
-        <td>
+        <td class="text">
            Shortened Link
         </td>
-        <td>
+        <td class="text">
            Date Generated
         </td>
-        <td>
+        <td class="text">
             Times Clicked
+        </td>
+        <td class="text">
+            Share
         </td>
       </tr>
     </thead>
@@ -54,9 +57,10 @@
      <tbody>
       <tr ng-repeat="url in allUrls | orderBy:'-id'">
         <td>{{ url.url }}</td>
-        <td ng-if"url.hash"><a target="_blank" href="{{ baseUrl + url.hash }}">{{ baseUrl + url.hash }}</a></td>
+        <td ng-if"url.hash"><a class="btn btn-info" target="_blank" href="{{ baseUrl + url.hash }}">{{ baseUrl + url.hash }}</a></td>
         <td>{{ url.date }}</a></td>
-        <td class="text-right">{{ url.num_of_clicks }}</a></td>    
+        <td class="text-right">{{ url.num_of_clicks }}</a></td>
+        <td><a class="btn btn-warning" href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl + url.hash}}">Post</a></td>    
       </tr>
      </tbody>
  </table>
@@ -86,7 +90,8 @@
                   $http.get('/whatis?url=' + data.url)
                     .success(function(data2) {
                     console.log('new shortlink',data2);
-                    data2.
+                    data2.date = 'Just Now';
+                    data2.num_of_clicks = 'Start Sharing';
                     $scope.allUrls.push(data2);
                  })
                     .error(function(data) {
@@ -109,6 +114,8 @@
                   $http.get('/whatis?url=' + data.url)
                     .success(function(data2) {
                     console.log('new shortlink',data2);
+                    data2.date = 'Just Now';
+                    data2.num_of_clicks = 'Start Sharing';
                     $scope.allUrls.push(data2);
                  })
                     .error(function(data) {

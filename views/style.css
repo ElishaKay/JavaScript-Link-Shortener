@@ -4,6 +4,25 @@
   box-sizing: border-box;
 }
 
+.text {
+  color: gold;
+  font-weight: bold;
+}
+
+img{
+  height: 250px;
+}
+
+.header{
+  background-image: url("img/passion.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.boxed {
+   margin-top: 90px;
+}
+
 body {
   background: #105469;
   font-family: 'Open Sans', sans-serif;

@@ -6,11 +6,7 @@ var router = require("./router");
 var con = require("./constants");
 
 app.use(bodyParser.urlencoded({extended: true}));
-
 app.set('port', (process.env.PORT || 5000))
-
-// var path = require("path");
-// app.use(express.static());
 app.use(express.static('views'));
 
 app.get('/',function(req,res){

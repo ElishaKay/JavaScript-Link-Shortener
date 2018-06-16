@@ -1,4 +1,6 @@
-exports.root_url = "http://localhost:3500/";
+// exports.root_url = "http://twolinks.herokuapp.com/";
+exports.root_url = "http://localhost:5000/";
+
 exports.min_vanity_length = 4;
 exports.num_of_urls_per_hour = 50;
 
@@ -12,4 +14,4 @@ exports.check_ip_query = 'SELECT COUNT(id) as counted FROM urls WHERE datetime_a
 exports.host = process.env.HOST;
 exports.user = process.env.USER;
 exports.password = process.env.PASSWORD;
-exports.database = process.env.DATABASE;
+exports.database = process.env.DATABASE;	

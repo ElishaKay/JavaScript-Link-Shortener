@@ -1,5 +1,4 @@
-// exports.root_url = "http://twolinks.herokuapp.com/";
-exports.root_url = "http://localhost:5000/";
+exports.root_url = process.env.DOMAIN;
 
 exports.min_vanity_length = 4;
 exports.num_of_urls_per_hour = 50;

@@ -92,7 +92,7 @@ function handleHash(hash, url, request, response, con){
 			console.log(err);
 		}
 	});
-	response.send(urlResult(hash, true, 100));
+	response.send({hash: hash, url: url});
 }
 
 //This function returns the object that will be sent to the client
@@ -168,7 +168,7 @@ var addUrl = function(url, request, response, vanity){
 						else{
 							req(url, function(err, res, body){
 								if(res != undefined && res.statusCode == 200){
-									generateHash(handleHash, hashError, 50, url, request, response, con, vanity);
+									console.log(generateHash(handleHash, hashError, 50, url, request, response, con, vanity));
 								}
 								else{
 									response.send(urlResult(null, false, 401));

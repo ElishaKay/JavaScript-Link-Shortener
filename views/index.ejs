@@ -86,7 +86,6 @@
             .success(function(data) {
               console.log(data);
               $scope.longurl = '';
-              $scope.newUrl = data.url;
               data.date = 'Just Now';
               data.num_of_clicks = 'Start Sharing';
               data.id = $scope.allUrls.length+1;
@@ -98,24 +97,16 @@
        };
 
        $scope.customShortener = function() {
-          console.log('called custom shortener with this vanity', $scope.vanity); 
           $http.get('/add?url=' + $scope.longurl + 
               '&vanity=' + $scope.vanity)
-              .success(function(data) {
-                console.log(data);
-                $scope.newUrl = data.url;
-                    //update Page
-                  $http.get('/whatis?url=' + data.url)
-                    .success(function(data2) {
-                    console.log('new shortlink',data2);
-                    data2.date = 'Just Now';
-                    data2.num_of_clicks = 'Start Sharing';
-                    $scope.allUrls.push(data2);
-                 })
-                    .error(function(data) {
-                    console.log('Error: ' + data);
-                 }); 
-          })
+            .success(function(data) {
+              console.log(data);
+              $scope.longurl = '';
+              data.date = 'Just Now';
+              data.num_of_clicks = 'Start Sharing';
+              data.id = $scope.allUrls.length+1;
+              $scope.allUrls.push(data);
+              }) 
           .error(function(data) {
           console.log('Error: ' + data);
          });
@@ -136,9 +127,6 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
           <h4 class="modal-title">Your shortlink is Ready!!</h4>
         </div>
-        
-          
-
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>

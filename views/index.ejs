@@ -86,18 +86,11 @@
             .success(function(data) {
               console.log(data);
               $scope.newUrl = data.url;
-                  //update Page
-                  $http.get('/whatis?url=' + data.url)
-                    .success(function(data2) {
-                    console.log('new shortlink',data2);
-                    data2.date = 'Just Now';
-                    data2.num_of_clicks = 'Start Sharing';
-                    $scope.allUrls.push(data2);
-                 })
-                    .error(function(data) {
-                    console.log('Error: ' + data);
-                 }); 
-          })
+              data.date = 'Just Now';
+              data.num_of_clicks = 'Start Sharing';
+              data.id = $scope.allUrls.length+1;
+              $scope.allUrls.push(data);
+              }) 
           .error(function(data) {
           console.log('Error: ' + data);
          });

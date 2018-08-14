@@ -81,10 +81,11 @@
           console.log('Error: ' + data);
       });
 
-      $scope.randomShortener = function() { 
+      $scope.randomShortener = function() {
           $http.get('/add?url=' + $scope.longurl)
             .success(function(data) {
               console.log(data);
+              $scope.longurl = '';
               $scope.newUrl = data.url;
               data.date = 'Just Now';
               data.num_of_clicks = 'Start Sharing';
@@ -133,11 +134,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-          <h4 class="modal-title">Your link is ready!</h4>
+          <h4 class="modal-title">Your shortlink is Ready!!</h4>
         </div>
-        <div class="modal-body">
-          <a href="{{newUrl}}" target="_blank">{{newUrl}}</a>
-        </div>
+        
           
 
         <div class="modal-footer">

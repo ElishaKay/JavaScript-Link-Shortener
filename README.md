@@ -2,7 +2,7 @@
 
 # Node.js + Express.js URL shortener
 
-Based on the Blog article here: <a href="https://www.codeproject.com/Articles/996559/URL-shortener-in-Node-js-plus-Express-js-plus-MySQL">Node, MySQL, and link shortening (doesn't include the front end)</a>.
+The server is based on <a href="https://github.com/dukeofharen/urlshortener.js">this repo</a>. There is also a <a href="https://www.codeproject.com/Articles/996559/URL-shortener-in-Node-js-plus-Express-js-plus-MySQL">Blog article which covers the server's basic structure</a>.
 
 
 ## Installation
